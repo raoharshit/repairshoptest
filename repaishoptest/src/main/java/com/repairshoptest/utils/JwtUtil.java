@@ -50,7 +50,7 @@ public class JwtUtil {
     	return Integer.parseInt(extractClaims(jwt).getSubject());
     }
 
-    public boolean isTokenValid(String jwt) {
+    public boolean isTokenExpired(String jwt) {
         try {
             // Parse the token, validating signature and expiration
            System.out.println(isExpired(jwt));

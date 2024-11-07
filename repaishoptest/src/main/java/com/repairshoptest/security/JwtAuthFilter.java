@@ -42,7 +42,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
     	String jwt = getJwtFromCookie(request);
-        if (jwt != null && !jwtUtil.isTokenValid(jwt)) {
+        if (jwt != null && !jwtUtil.isTokenExpired(jwt)) {
             int userId = jwtUtil.extractUserId(jwt);
             User user;
             try {

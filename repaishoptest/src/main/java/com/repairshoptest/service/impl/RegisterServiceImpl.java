@@ -1,5 +1,6 @@
 package com.repairshoptest.service.impl;
 
+import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -8,6 +9,7 @@ import com.repairshoptest.dto.ClerkRequestDTO;
 import com.repairshoptest.dto.RegisterRequest;
 import com.repairshoptest.dto.RegisterResponse;
 import com.repairshoptest.dto.RepairPersonRequestDTO;
+import com.repairshoptest.enums.UserRole;
 import com.repairshoptest.model.User;
 import com.repairshoptest.service.ClerkService;
 import com.repairshoptest.service.RegisterService;
@@ -25,7 +27,7 @@ public class RegisterServiceImpl implements RegisterService{
 	@Override
 	public RegisterResponse registerUser(RegisterRequest registerRequest){
 		User user;
-		if(registerRequest.getType().equals("clerk")) {
+		if(registerRequest.getType().equals(UserRole.CLERK.getRole())) {
 			ClerkRequestDTO clerkRequestDTO = registerRequest.getClerk();
 			user = clerkService.add(clerkRequestDTO);
 		}else {
